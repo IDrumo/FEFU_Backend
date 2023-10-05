@@ -37,7 +37,7 @@ class Cat{
     }
     
     void jump(){
-        System.out.println("облизал молоко");
+        System.out.println("Прыг-прыг");
     }
     
 }
