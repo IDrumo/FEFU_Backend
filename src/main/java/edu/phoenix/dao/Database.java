@@ -10,29 +10,32 @@ import java.util.List;
 public class Database {
     public static List<User> dataBase = new ArrayList<>();
 
-    public static void addUser(String name, String login, String password) throws Exception {
+    public static void addUser(String name, String login, String password) throws SuperExeption {
         try {
             if (login.equals(""))
-                throw new Exception("Пустая строка не может быть логином");
-        } catch (Exception e) {
+                throw new SuperExeption("Пустая строка не может быть логином");
+        } catch (SuperExeption e) {
             System.out.println(e.getMessage());
         }
 
         try {
-            getUser(login, password);
-        } catch (Exception e) {
-            dataBase.add(new User(name, login, password));
+            if (getUser(login, password) != null)
+                throw new SuperExeption("Пользователь уже есть");
+            else
+                dataBase.add(new User(name, login, password));
+        } catch (SuperExeption e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public static User getUser(String login, String password) throws Exception {
+    public static User getUser(String login, String password) throws SuperExeption {
         try {
             for (User user : dataBase) {
                 if (user.getLogin().equals(login) && user.getPassword().equals(password))
                     return user;
             }
-            throw new Exception("Такого пользователя нет");
-        } catch (Exception e) {
+            throw new SuperExeption("Такого пользователя нет");
+        } catch (SuperExeption e) {
             System.out.println(e.getMessage());
         }
         return null;

@@ -1,5 +1,6 @@
 package edu.phoenix.dao;
 
+import edu.phoenix.SuperExeption;
 import edu.phoenix.model.User;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ class DatabaseTest {
   private static final String PASSWORD = "password";
 
   @Test
-  void shouldAddUser() {
+  void shouldAddUser() throws SuperExeption {
     assertTrue(Database.dataBase.isEmpty());
 
     Database.addUser(NAME, LOGIN, PASSWORD);
@@ -32,7 +33,7 @@ class DatabaseTest {
   }
 
   @Test
-  void shouldReturnUser() {
+  void shouldReturnUser() throws Exception {
     assertTrue(Database.dataBase.isEmpty());
 
     Database.dataBase.add(new User(NAME, LOGIN, PASSWORD));
@@ -62,7 +63,7 @@ class DatabaseTest {
   }
 
   @Test
-  void shouldUpdateUser() {
+  void shouldUpdateUser() throws SuperExeption {
     assertTrue(Database.dataBase.isEmpty());
 
     Database.dataBase.add(new User(NAME, LOGIN, PASSWORD));
